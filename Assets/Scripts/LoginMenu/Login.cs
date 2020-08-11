@@ -33,11 +33,10 @@ public class Login : MonoBehaviour
 		WWW www = new WWW(path, form);
 		yield return www;
 
-		Debug.Log(www.text);
-
 		if (www.text[0] == '0')
 		{
-			DBManager.useremail = emailField.text;
+			Launcher.launcherIsLoggedIn = true;
+			DBManager.email = emailField.text;
 			UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 		}
 		else

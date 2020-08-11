@@ -1,25 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-//using Kedar.RichText;
 
 public class MainMenu : MonoBehaviour
 {
-	[SerializeField] private Text usermailDisplay; 
-	[SerializeField] private Button registerButton, loginButton,startGameButton;
+	[SerializeField] private Text usermailDisplay;
+	private Text loginText, startGame,logoutText; 
+	[SerializeField] private Button registerButton, loginButton,startGameButton,logoutButton;
 	void Start()
 	{
-		//print("Welcome to Main Menu".Bold().Color("Red").Size(25));
-		//print("Press Register Button to register".Italic().Color("Black").Size(11));
-		//print("Press Login Button to login ".Italic().Color("White").Size(11));
+		loginText = loginButton.GetComponentInChildren<Text>();
+		startGame = startGameButton.GetComponentInChildren<Text>();
+		logoutText = logoutButton.GetComponentInChildren<Text>();
 
-		if(DBManager.LoggedIn)
+		if (DBManager.LoggedIn)
 		{
-			usermailDisplay.text = "User logged in as: " + DBManager.useremail;
+			usermailDisplay.text = "User logged in as: " + DBManager.email;
+			loginText.text = "You are LoggedIn";
+			startGame.text = "Start Multiplayer.";
+			logoutText.text = "Logout";
+		}
+		else
+		{
+			usermailDisplay.text = "User logged in as: " + DBManager.email;
+			loginText.text = "Log in";
+			startGame.text = "Start Game as Guest";
+			logoutText.text = "You are not LoggedIn";
 		}
 
 		registerButton.onClick.AddListener(GoToRegister);
 		loginButton.onClick.AddListener(GoToLogin);
-		//startGameButton.onClick.AddListener(GoToLauncherScene);
+		startGameButton.onClick.AddListener(GoToLauncherScene);
+		logoutButton.onClick.AddListener(LogOut);
+		
+		registerButton.interactable = !DBManager.LoggedIn;
+		loginButton.interactable = !DBManager.LoggedIn;
+		logoutButton.interactable = DBManager.LoggedIn;
 	}
 
 	private void GoToRegister()
@@ -34,13 +49,15 @@ public class MainMenu : MonoBehaviour
 
 	private void GoToLauncherScene()
 	{
-		if (!DBManager.LoggedIn)
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
+	}
+
+	private void LogOut()
+	{
+		if (DBManager.LoggedIn)
 		{
-			usermailDisplay.text = "Login First to Start the Game";
-		}
-		else
-		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
+			DBManager.LogOut();
+			UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }

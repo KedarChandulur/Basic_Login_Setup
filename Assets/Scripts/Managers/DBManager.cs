@@ -1,33 +1,35 @@
-﻿using UnityEngine;
-
+﻿
 public static class DBManager
 {
-	public static string useremail;
+	public static string username;
 
-	public static bool LoggedIn { get { return useremail != null; } }
+	public static string email;
 
-	//public static string inGameName;
+	public static int playerCurrentScore;
 
-	//public static int score;
+	public static int playerHighScore;
 
-	//public static int highScore;
+	public static bool LoggedIn { get { return email != null; } }
+
+	public static bool NameLoggedIn { get { return username != null; } }
 
 	public static void LogOut()
 	{
-		useremail = null;
+		username = null;
+		email = null;
+
 		//UpdateHighScore(highScore);
 	}
 
-	//public static int UpdateHighScore(int highscore)
-	//{		
-	//	if(score > highscore)
-	//	{
-	//		return score;
-	//	}
-	//	else
-	//	{
-	//		return highscore;
-	//	}
-
-	//}
+	public static int UpdateHighScore()
+	{
+		if (playerCurrentScore > playerHighScore)
+		{
+			return playerCurrentScore;
+		}
+		else
+		{
+			return playerHighScore;
+		}
+	}
 }

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Registration : MonoBehaviour
 {
-	[SerializeField] private InputField emailField, passwordField;
+	[SerializeField] private InputField nameField, emailField, passwordField;
 	[SerializeField] private Button registerButton, loginButton;
 	[SerializeField]private string path;
 
@@ -27,6 +27,7 @@ public class Registration : MonoBehaviour
 	IEnumerator Register()
 	{
 		WWWForm form = new WWWForm();
+		form.AddField("name", nameField.text);
 		form.AddField("email", emailField.text);
 		form.AddField("password", passwordField.text);
 
@@ -40,12 +41,12 @@ public class Registration : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("User creation failed. Error # ." + www.text);
+			Debug.Log("User creation failed. Error." + www.text);
 		}
 	}
 
 	public void VerifyInputs()
 	{
-		registerButton.interactable = (emailField.text.Contains("@") && emailField.text.Contains(".") && emailField.text.Length >= 12 && passwordField.text.Length >= 8);
+		registerButton.interactable = (nameField.text.Length >= 3 && emailField.text.Contains("@") && emailField.text.Contains(".") && emailField.text.Length >= 12 && passwordField.text.Length >= 8);
 	}
 }
