@@ -35,7 +35,6 @@ public class Login : MonoBehaviour
 
 		if (www.text[0] == '0')
 		{
-			Launcher.launcherIsLoggedIn = true;
 			DBManager.email = emailField.text;
 			UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 		}

@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] private Text usermailDisplay;
-	private Text loginText, startGame,logoutText; 
-	[SerializeField] private Button registerButton, loginButton,startGameButton,logoutButton;
+	private Text loginText, startGame, logoutText;
+	[SerializeField] private Button registerButton, loginButton, startGameButton, logoutButton;
 	void Start()
 	{
 		loginText = loginButton.GetComponentInChildren<Text>();
@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour
 		loginButton.onClick.AddListener(GoToLogin);
 		startGameButton.onClick.AddListener(GoToLauncherScene);
 		logoutButton.onClick.AddListener(LogOut);
-		
+
 		registerButton.interactable = !DBManager.LoggedIn;
 		loginButton.interactable = !DBManager.LoggedIn;
 		logoutButton.interactable = DBManager.LoggedIn;
