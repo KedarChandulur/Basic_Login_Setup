@@ -49,7 +49,9 @@ public class MainMenu : MonoBehaviour
 
 	private void GoToLauncherScene()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
+		Debug.LogErrorFormat("No Game Scene Set." + this);
+		print("Set Your Game Scene here.");
+		//UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
 	}
 
 	private void LogOut()
