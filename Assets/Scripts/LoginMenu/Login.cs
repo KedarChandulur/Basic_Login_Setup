@@ -4,12 +4,19 @@ using System.Collections;
 
 public class Login : MonoBehaviour
 {
-	[SerializeField] private InputField emailField, passwordField;
-	[SerializeField] private Button loginButton, registerButton;
-	[SerializeField] private string path;
+	private InputField emailField, passwordField;
+	private Button loginButton, registerButton;
+	private string path;
 
 	void Start()
 	{
+		emailField = transform.GetChild(1).transform.GetChild(1).GetComponent<InputField>();
+		passwordField = transform.GetChild(2).transform.GetChild(1).GetComponent<InputField>();
+		loginButton = transform.GetChild(3).GetComponent<Button>();
+		registerButton = transform.GetChild(4).transform.GetChild(1).GetComponent<Button>();
+
+		path = "http://localhost/forname/login.php";
+
 		registerButton.onClick.AddListener(GoToRegisterMenu);
 		loginButton.onClick.AddListener(CallLogin);
 	}

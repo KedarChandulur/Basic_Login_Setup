@@ -4,12 +4,20 @@ using System.Collections;
 
 public class Registration : MonoBehaviour
 {
-	[SerializeField] private InputField nameField, emailField, passwordField;
-	[SerializeField] private Button registerButton, loginButton;
-	[SerializeField]private string path;
+	private InputField nameField, emailField, passwordField;
+	private Button registerButton, loginButton;
+	private string path;
 
 	private void Start()
 	{
+		nameField = transform.GetChild(1).transform.GetChild(1).GetComponent<InputField>();
+		emailField = transform.GetChild(2).transform.GetChild(1).GetComponent<InputField>();
+		passwordField = transform.GetChild(3).transform.GetChild(1).GetComponent<InputField>();
+		registerButton = transform.GetChild(4).GetComponent<Button>();
+		loginButton = transform.GetChild(5).transform.GetChild(1).GetComponent<Button>();
+
+		path = "http://localhost/forname/register.php";
+
 		loginButton.onClick.AddListener(GoToLoginMenu);
 		registerButton.onClick.AddListener(CallRegister);
 	}
@@ -27,6 +35,7 @@ public class Registration : MonoBehaviour
 	IEnumerator Register()
 	{
 		WWWForm form = new WWWForm();
+		nameField.text += "#" + Random.Range(1000, 10000);
 		form.AddField("name", nameField.text);
 		form.AddField("email", emailField.text);
 		form.AddField("password", passwordField.text);

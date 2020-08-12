@@ -3,11 +3,20 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-	[SerializeField] private Text usermailDisplay;
-	private Text loginText, startGame, logoutText;
-	[SerializeField] private Button registerButton, loginButton, startGameButton, logoutButton;
+	//Might need SerializeField.
+	private Text usermailDisplay;
+	private Button registerButton, loginButton,startGameButton,logoutButton;
+	//No need of SerializeField.
+	private Text loginText, startGame,logoutText;
+
 	void Start()
 	{
+		usermailDisplay = transform.GetChild(0).GetComponent<Text>();
+		registerButton = transform.GetChild(1).GetComponent<Button>();
+		loginButton = transform.GetChild(2).GetComponent<Button>();
+		startGameButton = transform.GetChild(3).GetComponent<Button>();
+		logoutButton = transform.GetChild(4).GetComponent<Button>();
+
 		loginText = loginButton.GetComponentInChildren<Text>();
 		startGame = startGameButton.GetComponentInChildren<Text>();
 		logoutText = logoutButton.GetComponentInChildren<Text>();
@@ -31,7 +40,7 @@ public class MainMenu : MonoBehaviour
 		loginButton.onClick.AddListener(GoToLogin);
 		startGameButton.onClick.AddListener(GoToLauncherScene);
 		logoutButton.onClick.AddListener(LogOut);
-
+		
 		registerButton.interactable = !DBManager.LoggedIn;
 		loginButton.interactable = !DBManager.LoggedIn;
 		logoutButton.interactable = DBManager.LoggedIn;
@@ -49,9 +58,7 @@ public class MainMenu : MonoBehaviour
 
 	private void GoToLauncherScene()
 	{
-		Debug.LogErrorFormat("No Game Scene Set." + this);
-		print("Set Your Game Scene here.");
-		//UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Launcher");
 	}
 
 	private void LogOut()
