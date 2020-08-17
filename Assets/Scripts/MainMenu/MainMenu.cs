@@ -59,6 +59,7 @@ public class MainMenu : MonoBehaviour
 	private void GoToLauncherScene()
 	{
 		Debug.LogError("No Scene name given.", this);
+		Debug.Log("Logged in as: " + DBManager.email, this);
 		//UnityEngine.SceneManagement.SceneManager.LoadScene("MyScene");
 	}
 
