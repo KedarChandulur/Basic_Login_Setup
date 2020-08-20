@@ -24,7 +24,7 @@ public class Registration : MonoBehaviour
 
 	private void GoToLoginMenu()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("LoginMenu");
+		Scenemanager.Loadscene("LoginMenu");
 	}
 
 	private void CallRegister()
@@ -35,7 +35,7 @@ public class Registration : MonoBehaviour
 	IEnumerator Register()
 	{
 		WWWForm form = new WWWForm();
-		nameField.text += "#" + Random.Range(1000, 10000);
+		//nameField.text += "#" + Random.Range(1000, 10000);
 		form.AddField("name", nameField.text);
 		form.AddField("email", emailField.text);
 		form.AddField("password", passwordField.text);
@@ -46,7 +46,7 @@ public class Registration : MonoBehaviour
 		if(www.text == "0")
 		{
 			Debug.Log("User created sucessfully.");
-			UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+			Scenemanager.Loadscene("MainMenu");
 		}
 		else
 		{

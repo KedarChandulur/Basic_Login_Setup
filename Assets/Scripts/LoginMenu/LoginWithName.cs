@@ -2,20 +2,20 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Login : MonoBehaviour
+public class LoginWithName : MonoBehaviour
 {
-	private InputField emailField, passwordField;
+	private InputField nameField, passwordField;
 	private Button loginButton, registerButton;
 	private string path;
 
 	void Start()
 	{
-		emailField = transform.GetChild(1).transform.GetChild(1).GetComponent<InputField>();
+		nameField = transform.GetChild(1).transform.GetChild(1).GetComponent<InputField>();
 		passwordField = transform.GetChild(2).transform.GetChild(1).GetComponent<InputField>();
 		loginButton = transform.GetChild(3).GetComponent<Button>();
 		registerButton = transform.GetChild(4).transform.GetChild(1).GetComponent<Button>();
 
-		path = "http://localhost/forname/login.php";
+		path = "http://localhost/forname/loginwith_username.php";
 
 		registerButton.onClick.AddListener(GoToRegisterMenu);
 		loginButton.onClick.AddListener(CallLogin);
@@ -34,7 +34,7 @@ public class Login : MonoBehaviour
 	IEnumerator LoginUser()
 	{
 		WWWForm form = new WWWForm();
-		form.AddField("email", emailField.text);
+		form.AddField("name", nameField.text);
 		form.AddField("password", passwordField.text);
 
 		WWW www = new WWW(path, form);
@@ -42,7 +42,7 @@ public class Login : MonoBehaviour
 
 		if (www.text[0] == '0')
 		{
-			DBManager.email = emailField.text;
+			DBManager.username = nameField.text;
 			Scenemanager.Loadscene("MainMenu");
 		}
 		else
@@ -53,6 +53,6 @@ public class Login : MonoBehaviour
 
 	public void VerifyInputs()
 	{
-		loginButton.interactable = (emailField.text.Contains("@") && emailField.text.Contains(".") && emailField.text.Length >= 12 && passwordField.text.Length >= 8);
+		loginButton.interactable = (nameField.text.Length >= 3 && passwordField.text.Length >= 8);
 	}	
 }

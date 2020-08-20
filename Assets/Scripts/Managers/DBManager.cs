@@ -9,14 +9,28 @@ public static class DBManager
 
 	public static int playerHighScore;
 
-	public static bool LoggedIn { get { return email != null; } }
+	public static bool LoggedInWithEmail { get { return email != null; } }
 
-	public static bool NameLoggedIn { get { return username != null; } }
+	public static bool GetUserName { get { return username != null; } }
 
-	public static void LogOut()
+	public static void LogOutfromEmailandName()
+	{
+		LogOutfromEmail();
+		LogOutfromUserName();
+
+		//UpdateHighScore(highScore);
+	}
+
+	public static void LogOutfromEmail()
+	{
+		email = null;
+
+		//UpdateHighScore(highScore);
+	}
+
+	public static void LogOutfromUserName()
 	{
 		username = null;
-		email = null;
 
 		//UpdateHighScore(highScore);
 	}
