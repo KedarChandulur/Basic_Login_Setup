@@ -5,7 +5,7 @@ using System.Collections;
 public class Login : MonoBehaviour
 {
 	private InputField emailField, passwordField;
-	private Button loginButton, registerButton;
+	private Button loginButton, registerButton,mainmenuButton;
 	private string path;
 
 	void Start()
@@ -14,11 +14,18 @@ public class Login : MonoBehaviour
 		passwordField = transform.GetChild(2).transform.GetChild(1).GetComponent<InputField>();
 		loginButton = transform.GetChild(3).GetComponent<Button>();
 		registerButton = transform.GetChild(4).transform.GetChild(1).GetComponent<Button>();
+		mainmenuButton = transform.GetChild(5).transform.GetChild(1).GetComponent<Button>();
 
 		path = "http://localhost/forname/login.php";
 
-		registerButton.onClick.AddListener(GoToRegisterMenu);
 		loginButton.onClick.AddListener(CallLogin);
+		registerButton.onClick.AddListener(GoToRegisterMenu);
+		mainmenuButton.onClick.AddListener(GoToMainMenu);
+	}
+
+	private void GoToMainMenu()
+	{
+		Scenemanager.Loadscene("MainMenu");
 	}
 
 	private void GoToRegisterMenu()
