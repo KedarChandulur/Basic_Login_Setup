@@ -23,14 +23,16 @@ public static class DBManager
 
 	public static void LogOutfromEmail()
 	{
-		email = null;
+		if (LoggedInWithEmail)
+			email = null;
 
 		//UpdateHighScore(highScore);
 	}
 
 	public static void LogOutfromUserName()
 	{
-		username = null;
+		if (GetUserName)
+			username = null;
 
 		//UpdateHighScore(highScore);
 	}

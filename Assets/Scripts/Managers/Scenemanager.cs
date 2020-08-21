@@ -20,4 +20,16 @@ public static class Scenemanager
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNumber);
 	}
+
+	/// <summary>
+	/// This Reload the current Scene by taking bool scene index
+	/// </summary>
+	/// <param name="loadwithindex">sceneNumber is the int input</param>
+	public static void ReloadCurrentScene(bool loadwithindex = true)
+	{
+		if (loadwithindex)
+			Loadscene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+		else
+			Loadscene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+	}
 }

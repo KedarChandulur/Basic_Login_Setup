@@ -103,12 +103,20 @@ public class MainMenu : MonoBehaviour
 
 	private void GoToMultiplayerScene()
 	{
-		Debug.LogFormat("Add you game Scene that you want to load here: Some Game Scene would be perfect.");
+		Debug.LogError("Logged in Successfully.");
 
-		if (DBManager.LoggedInWithEmail)
-			Debug.LogError("User Logged in email is: " + DBManager.email);
+		if(DBManager.LoggedInWithEmail)
+		{
+			Debug.Log("Email is: " + DBManager.email);
+		}
 		else if (DBManager.GetUserName)
-			Debug.LogError("User Logged in name is: " + DBManager.username);
+		{
+			Debug.Log("UserName is: " + DBManager.username);
+		}
+
+		Debug.LogError("Give Your Scene Name Here.");
+
+		Debug.Log("You Can Use Scene Manager Static Class,which is present in the project.");
 	}
 
 	private void LogoutButtonPressed()
@@ -136,13 +144,13 @@ public class MainMenu : MonoBehaviour
 		{
 			//DBManager.LogOutfromEmailandName();
 			DBManager.LogOutfromEmail();
-			Scenemanager.Loadscene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+			Scenemanager.ReloadCurrentScene(true);
 		}
 		else if (DBManager.GetUserName)
 		{
 			//DBManager.LogOutfromEmailandName();
 			DBManager.LogOutfromUserName();
-			Scenemanager.Loadscene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+			Scenemanager.ReloadCurrentScene(true);
 		}
 	}
 
