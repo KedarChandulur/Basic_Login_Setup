@@ -13,3 +13,7 @@
 * http://localhost/MAMP/ <- Access MAMP main page
 
 _For the initial/starting scene, please refer Main Menu Scene._
+
+**Additonal Info related to debugging/visual info/pop-up's**
+- I haven't used any notificaiton panel(s) to notify for any error info or for any other info(logs).
+- Please refer console for any error info/info(logs).
