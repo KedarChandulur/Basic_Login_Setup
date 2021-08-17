@@ -16,5 +16,5 @@ EditorBuildSettings:
     guid: 0ba63e4ec1347f04bbd87e79c601bb78
   - enabled: 1
     path: Assets/Scenes/LoginMenuWithName.unity
-    guid: 9c513411ccb457e4eb7b98d3c568e2fa
+    guid: b88a965ec286194408a86078e73e8204
   m_configObjects: {}
