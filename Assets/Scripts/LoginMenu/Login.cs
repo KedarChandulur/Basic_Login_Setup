@@ -8,6 +8,7 @@ public class Login : MonoBehaviour
 	private Button loginButton, registerButton,mainmenuButton;
 	private string path;
 
+	[System.Obsolete]
 	void Start()
 	{
 		emailField = transform.GetChild(1).transform.GetChild(1).GetComponent<InputField>();
@@ -33,11 +34,13 @@ public class Login : MonoBehaviour
 		Scenemanager.Loadscene("RegisterMenu");
 	}
 
+	[System.Obsolete]
 	private void CallLogin()
 	{
 		StartCoroutine(LoginUser());
 	}
 
+	[System.Obsolete]
 	IEnumerator LoginUser()
 	{
 		WWWForm form = new WWWForm();
@@ -47,6 +50,13 @@ public class Login : MonoBehaviour
 		WWW www = new WWW(path, form);
 		yield return www;
 
+		if (string.IsNullOrEmpty(www.text))
+		{
+			Debug.LogError("User login failed. Response is invalid/null/empty");
+			Debug.LogError("Server is probably offline. Start the server from MAMP.");
+			yield break;
+		}
+
 		if (www.text[0] == '0')
 		{
 			DBManager.email = emailField.text;
@@ -54,7 +64,7 @@ public class Login : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("User login failed. Error #" + www.text);
+			Debug.LogError("User login failed. Error #" + www.text);
 		}
 	}
 

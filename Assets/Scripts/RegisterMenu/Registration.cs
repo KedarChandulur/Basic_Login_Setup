@@ -8,6 +8,7 @@ public class Registration : MonoBehaviour
 	private Button registerButton, loginButton, mainmenuButton;
 	private string path;
 
+	[System.Obsolete]
 	private void Start()
 	{
 		nameField = transform.GetChild(1).transform.GetChild(1).GetComponent<InputField>();
@@ -34,11 +35,13 @@ public class Registration : MonoBehaviour
 		Scenemanager.Loadscene("LoginMenu");
 	}
 
+	[System.Obsolete]
 	private void CallRegister()
 	{
 		StartCoroutine(Register());
 	}
 
+	[System.Obsolete]
 	IEnumerator Register()
 	{
 		WWWForm form = new WWWForm();
@@ -50,14 +53,21 @@ public class Registration : MonoBehaviour
 		WWW www = new WWW(path, form);
 		yield return www;
 
-		if(www.text == "0")
+		if (string.IsNullOrEmpty(www.text))
+		{
+			Debug.LogError("User creation failed. Response is invalid/null/empty");
+			Debug.LogError("Server is probably offline. Start the server from MAMP.");
+			yield break;
+		}
+
+		if (www.text == "0")
 		{
 			Debug.Log("User created sucessfully.");
 			Scenemanager.Loadscene("MainMenu");
 		}
 		else
 		{
-			Debug.Log("User creation failed. Error." + www.text);
+			Debug.LogError("User creation failed. Error." + www.text);
 		}
 	}
 
