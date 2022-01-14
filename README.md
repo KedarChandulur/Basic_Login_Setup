@@ -17,3 +17,7 @@ _For the initial/starting scene, please refer Main Menu Scene._
 **Info related to debugging - Pop-up's/Notifications**
 - I haven't used any notificaiton panel(s) to notify for any error info or for any other info(logs).
 - Please refer console for any error info/info(logs).
+
+## Screen shots from Unity editor
+![image](https://user-images.githubusercontent.com/47148900/149493523-bbd1851c-e253-4b95-9d29-ad73d489cb80.png)
+![image](https://user-images.githubusercontent.com/47148900/149493780-59a3dac8-642a-4090-b044-af97bff471bc.png)
