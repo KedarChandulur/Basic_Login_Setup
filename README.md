@@ -1,4 +1,4 @@
-# Basic-Login-Setup using/for Unity(C#), PHP and MAMP Application.
+# Basic-Login-Setup using Unity(C#), PHP and MAMP Application.
 
 **Resolve basic dependencies by following the instructions below.**
 * Place the **forname** folder in the path where The **MAMP's Document Root** - path.(Refer Web Server tab in MAMP application for this).
